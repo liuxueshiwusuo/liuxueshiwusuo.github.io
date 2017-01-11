@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[随笔一则]]></title>
+      <url>http://DavidCorn.github.io/2016/08/02/%E9%9A%8F%E7%AC%94%E4%B8%80%E5%88%99/</url>
+      <content type="html"><![CDATA[<p>睡醒再写=。=</p>
+<p>反正也没人看hhh</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Segment Tree]]></title>
+      <url>http://DavidCorn.github.io/2016/05/18/Segment_tree/</url>
+      <content type="html"><![CDATA[<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a><strong>Concepts</strong></h2><p>Segment tree is a data structure that stores interval, mainly realize a maximum querying time consuming of log(n).<br><a id="more"></a></p>
+<pre><code>           [0, 3, max=4]
+          /             \
+   [0,1,max=4]        [2,3,max=3]
+   /         \        /         \
+[0,0,max=1] [1,1,max=4] [2,2,max=2], [3,3,max=3]
+</code></pre><p>The basic structure loos like this. Every interval is cut into two parts (subnodes), [start, mid] and [mid + 1, end]. It is extremely useful when we want to find the minimum/maximum number in specified intervals.</p>
+<p>A segment tree for a set I of n intervals uses O(n log n) storage and can be built in O(n log n) time.<a href="https://en.wikipedia.org/wiki/Segment_tree" target="_blank" rel="external">^1</a></p>
+<h2 id="Typical-problem"><a href="#Typical-problem" class="headerlink" title="Typical problem"></a><strong>Typical problem</strong></h2><h4 id="Interval-Minimum-Number"><a href="#Interval-Minimum-Number" class="headerlink" title="Interval Minimum Number"></a><strong><a href="http://www.lintcode.com/en/problem/interval-minimum-number/" target="_blank" rel="external">Interval Minimum Number</a></strong></h4><p>Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. Each query has two integers [start, end]. For each query, calculate the minimum number between index start and end in the given array, return the result list.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>For array [1,2,7,8,5], and queries [(1,2),(0,4),(2,4)], return [2,1,5]</p>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of Interval.</span><br><span class="line">class Interval(object):</span><br><span class="line">    def __init__(self, start, end):</span><br><span class="line">        self.start = start</span><br><span class="line">        self.end = end</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegmentTree</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, min)</span>:</span></span><br><span class="line">        self.start, self.end = start, end</span><br><span class="line">        self.min = min</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A, queries: Given an integer array and an Interval list</span><br><span class="line">                       The ith query is [queries[i-1].start, queries[i-1].end]</span><br><span class="line">    @return: The result list</span><br><span class="line">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intervalMinNumber</span><span class="params">(self, A, queries)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        <span class="comment"># build segment tree first</span></span><br><span class="line">        root = self.buildTree(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> self.search(root, queries)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># @param A, start, end</span></span><br><span class="line">    <span class="comment"># return: segment tree root</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        node = SegmentTree(start, end, A[start])</span><br><span class="line">        <span class="keyword">if</span> start == end:</span><br><span class="line">            <span class="keyword">return</span> node</span><br><span class="line">        mid = (start + end) / <span class="number">2</span></span><br><span class="line">        node.left = self.buildTree(A, start, mid)</span><br><span class="line">        node.right = self.buildTree(A, mid + <span class="number">1</span>, end)</span><br><span class="line">        <span class="keyword">if</span> node.left <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">if</span> node.left.min &lt; node.min <span class="keyword">or</span> node.right.min &lt; node.min:</span><br><span class="line">                node.min = min(node.left.min, node.right.min)</span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># @param A, queries</span></span><br><span class="line">    <span class="comment"># @return: The result list</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, root, queries)</span>:</span></span><br><span class="line">        li = []</span><br><span class="line">        <span class="keyword">for</span> query <span class="keyword">in</span> queries:</span><br><span class="line">            start = query.start</span><br><span class="line">            end = query.end</span><br><span class="line">            li.append(self.searchForMin(root, start, end))</span><br><span class="line">        <span class="keyword">return</span> li</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchForMin</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> (end &lt; root.start <span class="keyword">or</span> start &gt; root.end):</span><br><span class="line">            <span class="keyword">return</span> sys.maxint</span><br><span class="line">        <span class="keyword">if</span> (start &lt;= root.start <span class="keyword">and</span> end &gt;= root.end):</span><br><span class="line">            <span class="keyword">return</span> root.min</span><br><span class="line">        <span class="keyword">return</span> min(self.searchForMin(root.left, start, end), </span><br><span class="line">                   self.searchForMin(root.right, start, end))</span><br></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Load Balancing]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Load_Balancing/</url>
+      <content type="html"><![CDATA[<p>Process scheduling means which process should work on which processor.</p>
+<p>Load balancing is a strategy for how to do process scheduling. There are several policy that should be considered:</p>
+<ol>
+<li><strong>Transfer Policy</strong>: Decide whether it has to be transferred?</li>
+<li><strong>Selection Policy</strong>: Which process should I choose to make a move?</li>
+<li><strong>Location Policy</strong>: How to choose source destination?</li>
+</ol>
+<p>If we want to transfer a process from one processor (sender) to another processor (receiver), then the process must be initiated either by sender or by the receiver.<br><a id="more"></a></p>
+<hr>
+<h2 id="Sender-Initiate-Algorithms"><a href="#Sender-Initiate-Algorithms" class="headerlink" title="Sender-Initiate Algorithms"></a><strong>Sender-Initiate Algorithms</strong></h2><p>The load distribution facilitates migration from a <strong>heavily-loaded</strong> sender to a <strong>lightly-loaded</strong> receiver. So in that case, the algorithm is better used in a <strong>lightly-loaded</strong> system, because light processors are relatively easy to be found.</p>
+<p>A sender can use a transfer policy that initiates the algorithm when detecting its queue length exceeded a certain threshold upon the arrival of a new process. In that case, the sender would probe suitable receivers until it find one.</p>
+<hr>
+<h2 id="Receiver-Initiated-Algorithm"><a href="#Receiver-Initiated-Algorithm" class="headerlink" title="Receiver-Initiated Algorithm"></a><strong>Receiver-Initiated Algorithm</strong></h2><p>It is reasonable to have a receiver-initiated algorithm since there’s a sender-initiate algorithm. Similarly, the processor activates the pull operation when its queue length falls below a certain threshold. A lightly loaded processor pull from the heavily loaded sender.</p>
+<p>Based on that, the algorithm is better used in a <strong>heavily loaded</strong> system, where a sender can be found easily. </p>
+<p>The receiver-initiated algorithm is more stable than the sender-initiated algorithm. That is because in low traffic system, although the migration initiation might be plenty, the degradation of performance due to the additional network traffic is not significant. </p>
+<p>Combination of sender-initiated algorithm and receiver-initiated algorithm seems logical. Each node may dynamically play the role of either sender or receiver. Probing thus becomes unnecessary.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[File System]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/File_System/</url>
+      <content type="html"><![CDATA[<h2 id="File-System-vs-database"><a href="#File-System-vs-database" class="headerlink" title="File System vs. database"></a><strong>File System vs. database</strong></h2><p>The true difference between file system and database is naming and encapsulation. Besides, files are more easy to make, more flexible to use.</p>
+<p>If the searchtousage ratio is low and the temporal locality is high, then file system is recommended. Otherwise database is recommended.</p>
+<p>P.S. The architecture is another difference.</p>
+<blockquote>
+<p><strong>Notes: Properties of DFS</strong></p>
+<ul>
+<li>Persistence</li>
+<li>Use same interface as local files</li>
+<li>Allow for sharing</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="Mechanism-for-Distributed-System"><a href="#Mechanism-for-Distributed-System" class="headerlink" title="Mechanism for Distributed System"></a><strong>Mechanism for Distributed System</strong></h2><p><strong>Caching</strong></p>
+<p>DS caching cares about data (files), metadata (information about data), location info, etc. </p>
+<p><strong>Mount Points</strong></p>
+<p>Mount points is a Natural mechanism to use when mounted subtrees and remote file directories.</p>
+<p>Designing DFS mapping: File name -&gt; File id -&gt; file</p>
+<hr>
+<h2 id="Network-File-System"><a href="#Network-File-System" class="headerlink" title="Network File System"></a><strong>Network File System</strong></h2><p>NFS is designed for stateless server, client-server architecture communicates between each other through RPC. Pathname cannot be interpreted at server.</p>
+<p>NFS cache is just like local file system cache.</p>
+<hr>
+<h2 id="Andrew-File-System"><a href="#Andrew-File-System" class="headerlink" title="Andrew File System"></a><strong>Andrew File System</strong></h2><p>It is originally designed to support campus-wide sharing. The most important factor is scalability. There are several assumptions:</p>
+<ol>
+<li>Files are usually small, mostly less then 10 KB;</li>
+<li>Reading is 6 times more than Writing;</li>
+<li>Sequential access is common;</li>
+<li>Most files are written/read by only one single user.</li>
+</ol>
+<p>The design strategy abstract could be described as: whole file caching, whole file serving, Unix API provided.</p>
+<hr>
+<h2 id="Google-File-System"><a href="#Google-File-System" class="headerlink" title="Google File System"></a><strong>Google File System</strong></h2><p><a href="http://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf" target="_blank" rel="external">GFS</a> is designed to share large data (files) among large number of users, the paper illustrates lots of details about GFS properties. Basically,</p>
+<p>GFS client sends a searching request to GFS master. Within GFS master stores the file namespace, which is in another way, metadata. The GFS master won’t store much detailed information, and we must minimize its <strong>involvement</strong> in reads and writes so that it does not become a bottleneck. <strong>Client never reads and writes data through the master. Instead, it asks the master which chunkservers it should contact</strong>. Caching (in client) is necessary.</p>
+<p>When client gets the chunk locations, it directly reaches out to the closest chunk replica, and fetches data back from them. Chunk size have been chosen as 64MB. It is designed like that because: </p>
+<ol>
+<li>It reduces clients’ need to interact with the master because reads and writes on the same chunk require only one initial request to the master for chunk location information.</li>
+<li>Since on a large chunk, a client is more likely to perform many operations on a given chunk, it can reduce network overhead by keeping a persistent TCP connection to the chunk server over an extended period of time.</li>
+<li>It reduces the size of the metadata stored on the master.</li>
+</ol>
+<p>To be clear, metadata is stored in memory of master. <strong>Chunk servers need not cache data</strong>, because chunks are stored as local files and so Linux’s buffer cache already keeps frequently accessed data in memory.</p>
+<p>When client tries to reach replicas: </p>
+<ol>
+<li>Client pushes data to all the replicas (first to the closest replica, then to all the others). By decoupling the data flow from the control flow, we can improve performance by scheduling expensive data based on network topology.</li>
+<li>Once all replicas receive the data, the client sends a write request to the primary replica, which assigns the task to other replicas. After receiving ACK from other replicas, primary replica sends ACK or any errors back to the client.<br>(Default chunk replication is three)</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Naming]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Naming/</url>
+      <content type="html"><![CDATA[<p>Naming is a mechanism to make machine a human readable identifier. URN (Uniform resource name) has sets of rules to define that.<br><a id="more"></a></p>
+<h2 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a><strong>Navigation</strong></h2><p><strong>Conception:</strong> Searching for final resolution of a name by traversing realms.</p>
+<blockquote>
+<p><strong>Notes: Types of navigation</strong></p>
+<ul>
+<li>Multicast navigation: Client send request to different namespaces, once it finds the target, the namespace response with the answer.</li>
+<li>Iterative navigation: Every time client send request to namespaces, it replies with a namespace whether it’s the target or not.</li>
+<li>Server controlled navigation: Server may take over clients job to perform navigation on behalf of client. The advantage of doing that is reducing the bandwidth, and results can be cached.<ul>
+<li>Non-recursive server controlled: local namespace help client to do the multicast job;</li>
+<li>Recursive server controlled: Client sends request to local namespace, local namespace sends request to nearby namespace, nearby namespace sends request to another namespace… When target namespace is found, replies with the answer through the sending route back to the client.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="Domain-Name-System"><a href="#Domain-Name-System" class="headerlink" title="Domain Name System"></a><strong>Domain Name System</strong></h2><p>DNS is the most successful distributed system. It scales to millions of computers, and its name structure reflects administrative structure of internet. Its main job is to resolve domain names to IP addresses.</p>
+<p>We need a “Yellow page” for resources in the network, which can be searched via “attribute” not just name.</p>
+<blockquote>
+<p><strong>Notes: Why not DNS?</strong><br>DNS holds some descriptive data, but which is not quite complete, and also, more importantly, DNS isn’t organized to search it.</p>
+</blockquote>
+<p><strong>Methods:</strong> Discovery Service (X.500, LDAP). Building dictionary for attributes… Examples are: Jini discovery service, Bonjour</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Paxos algorithm]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Paxos_Algorithm/</url>
+      <content type="html"><![CDATA[<h2 id="Conceptions-and-Assumptions"><a href="#Conceptions-and-Assumptions" class="headerlink" title="Conceptions and Assumptions"></a><strong>Conceptions and Assumptions</strong></h2><p>Paxos algorithm is one of the most brilliant ideas (perhaps the most brilliant, according to <a href="http://research.google.com/pubs/author24014.html" target="_blank" rel="external">Michael Burrows</a>) talking about how fault-not-so-tolerant system reaches consistency on some value.</p>
+<p>Above all, there are some assumptions:</p>
+<ol>
+<li>Assume that all the processors are <strong>non-evil</strong> processors, which means we consider the system as non-byzantine system;</li>
+<li>All processes communicate with asynchronous messages;</li>
+<li>All processes have durable storage available which can be read after a process failure.</li>
+</ol>
+<p>Based on the assumptions above, Paxos guarantees that <strong>whatever faults happens in the system, the consistency protocol would never get wrong</strong>.<br><a id="more"></a></p>
+<h2 id="Roles-in-Paxos"><a href="#Roles-in-Paxos" class="headerlink" title="Roles in Paxos"></a><strong>Roles in Paxos</strong></h2><ul>
+<li><strong>Proposers</strong>: They propose a value to have consensus on.<ul>
+<li><strong>Leader: </strong> A distinguished proposer, required to make progress.</li>
+</ul>
+</li>
+<li><strong>Acceptors: </strong> They hear about the proposals and accept them.</li>
+<li><strong>Learners: </strong> They wish to learn about the agreed values.</li>
+</ul>
+<h2 id="One-Value-Scenario"><a href="#One-Value-Scenario" class="headerlink" title="One Value Scenario"></a><strong>One Value Scenario</strong></h2><p>First we describe the situation on how one value is agreed in Paxos.</p>
+<ol>
+<li>Proposer send $M_{prepare}$ containing value $V$ to a quorum of Accepters, the proposal contains a globally unique number $N$.</li>
+<li>Accepter keeps track of its <strong>highest</strong> previous accepted number $N<em>{prev}$ and its value $V$. When it receives $M</em>{prepare}$, it compares $N$ and $N<em>{prev}$, if $N &gt; N</em>{prev}$, send $M_{promise}$ back;</li>
+<li>When Proposer receives a quorum of $M<em>{promise}$, then it send $M</em>{accept}$ to the quorum of Acceptors.</li>
+<li>Upon receiving the accept message, if $N &gt; N_{prev}$, it must accept the message. After reaching consistency between acceptors, they send accepted message to the learner.</li>
+</ol>
+<h2 id="Multi-value-Scenario"><a href="#Multi-value-Scenario" class="headerlink" title="Multi-value Scenario"></a><strong>Multi-value Scenario</strong></h2><p>If different proposers send multiple values, what happened? The author of <strong><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf" target="_blank" rel="external">Paxos Made Simple</a></strong> (which is not simple at all…) describes the general phases.</p>
+<blockquote>
+<p><strong>Notes: General Phases of Paxos</strong><br><strong>Phase 1</strong><br>(a) A proposer selects a proposal number n and sends a prepare request with number n to a majority of acceptors.<br>(b) If an acceptor receives a prepare request with number n greater than that of any prepare request to which it has already responded, then it responds to the request with a promise not to accept any more proposals numbered less than n and with the highest-numbered pro-posal (if any) that it has accepted.<br><strong>Phase 2</strong><br>(a) If the proposer receives a response to its prepare requests (numbered n) from a majority of acceptors, then it sends an accept request to each of those acceptors for a proposal numbered n with a value v , where v is the value of the highest-numbered proposal among the responses, or is any value if the responses reported no proposals.</p>
+</blockquote>
+<p><strong>Situation 1:</strong><br>If the second proposal receives at the time when the first proposal is accepted, then the Acceptor would send $M_{promise}$ back with its current $N$ and $V$. Upon receiving the $N$ and $V$, the second Proposer then broadcast the message with certain $V$.</p>
+<p><strong>Situation 2: </strong><br>If before accepting the value, the proposal receives a proposal with a bigger $N$ (smaller $N$ would be discarded directly), then the pending accepted $V$ would be discarded. The original $M<em>{accepted}$ would be replaced as $M</em>{rejected}$.</p>
+<p>This <a href="http://codemacro.com/2014/10/15/explain-poxos/" target="_blank" rel="external">blog</a> gives a very easy and clear overview of Paxos algorithm. <a href="https://en.wikipedia.org/wiki/Paxos_%28computer_science%29" target="_blank" rel="external">Wiki</a> also did a good job on this.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Type of consistency]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Types_of_Consistency/</url>
+      <content type="html"><![CDATA[<p>Performance and consistency are always a pair of tradeoff.</p>
+<p>Today we discuss different kinds of consistency.<br><a id="more"></a></p>
+<h2 id="Strict-Consistency"><a href="#Strict-Consistency" class="headerlink" title="Strict Consistency"></a><strong>Strict Consistency</strong></h2><p>If process updates at T1, and then updates at T2, when read data between T1 and T2, following the strict consistency rule, the user would read data at T1.</p>
+<p>Strict consistency is not desired and not often used, except in micro-processors.</p>
+<h2 id="Sequential-Consistency"><a href="#Sequential-Consistency" class="headerlink" title="Sequential Consistency"></a><strong>Sequential Consistency</strong></h2><p>Sequential consistency is relatively simple, all the processors agree on one sequential order. It is often used in distributed shared memory and distributed transactions. </p>
+<p>This rule requires that the write operation to be seen by all the processors immediately.</p>
+<h2 id="Causal-Consistency"><a href="#Causal-Consistency" class="headerlink" title="Causal Consistency"></a><strong>Causal Consistency</strong></h2><p>Causal consistency requires write operations in “-&gt;” order. Yet concurrent operations could be seen in different order in different processors (different from sequential consistency).</p>
+<p>This rule could be <strong>implemented</strong> with vector clock to order updates.</p>
+<h2 id="Eventual-Consistency"><a href="#Eventual-Consistency" class="headerlink" title="Eventual Consistency"></a><strong>Eventual Consistency</strong></h2><p>In this situation, read is assumed to be more than write. Data that is received slightly out of date is acceptable.</p>
+<p>The model is described as client-centric model, which means that if the eventual results (writes) are propagated, then the rule is met.</p>
+<p>In one sentence, <strong>In the absence of updates, all writes will propagate eventually</strong>.</p>
+<p><strong>Implementation</strong> is quite simple: Give data items a lifetime, after which replica must read the item again</p>
+<h2 id="Entry-weak-Consistency"><a href="#Entry-weak-Consistency" class="headerlink" title="Entry/weak Consistency"></a><strong>Entry/weak Consistency</strong></h2><p>In weak consistency, it only requires that data that enters into critical section is in the same order. Before giving ownership to another process, the data went into the critical section must be brought up to date.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[High Availability]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/High_Availability/</url>
+      <content type="html"><![CDATA[<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a><strong>Concepts</strong></h2><p><strong>Availability</strong> means that machine/system runs continuously. Meanwhile the system would keep the maintenance outage under operator control, keep the costs low and keep the implementation overhead low.<br>If we define MTTF as Mean time to failure, and MTTR means Mean time to repair, availability is calculated as<br>Av = MTTF/(MTTR + MTTF)<br>The closer Av is to one, the stronger availability system is.<br><a id="more"></a></p>
+<p><strong>Difference between failure, fault and error</strong></p>
+<ul>
+<li><strong>Failure</strong>: Deviation from specified behavior</li>
+<li><strong>Error</strong>: Leading a wrong result</li>
+<li><strong>Fault</strong>: Something goes wrong at the lowest level</li>
+</ul>
+<p><strong>Crash failure</strong> means a server halts, but it is working properly before until it halts.</p>
+<blockquote>
+<p><strong>Notes: Difference between availability and fault tolerant</strong><br>Availability is about finding a <strong>non-crashed source</strong><br>Fault tolerant is about finding the <strong>correct answer</strong></p>
+</blockquote>
+<h2 id="Fault-tolerant-techniques"><a href="#Fault-tolerant-techniques" class="headerlink" title="Fault tolerant techniques"></a><strong>Fault tolerant techniques</strong></h2><ol>
+<li><p>TMR (Triple Modular Redundancy)<br>The method uses a <strong>Voter</strong> to collect data from different units, and gives the output which most units agree on. The technique requires that voter is much more reliable than the units, and correct units generate the same outputs.<br>The tradeoff of this architecture is that the system is too complicated and expensive.</p>
+</li>
+<li><p>Master-Slave configuration<br>Master and slave node have the same input, slave would simulate the output of the master. When there’s discrepancy between master and slave, both master and slave would shut down.<br>The tradeoff is that the architecture wont’t tell that which one (slave or master) goes wrong.</p>
+</li>
+</ol>
+<h2 id="Replication-and-consistency"><a href="#Replication-and-consistency" class="headerlink" title="Replication and consistency"></a><strong>Replication and consistency</strong></h2><p><strong>Consistency</strong> hereby means that any change to one replica must be reflected at all replicas.<br>The price of consistency is also obvious. When failure happens, performance costs, and even when there’s no failure, performance also costs (e.g. too many replicas)<br><strong>Generally, for a given performance level, higher availability can be arrived with weaker consistency.</strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Peer to Peer System]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Peer_to_Peer_System/</url>
+      <content type="html"><![CDATA[<h2 id="History-P2P-System"><a href="#History-P2P-System" class="headerlink" title="History P2P System"></a><strong>History P2P System</strong></h2><p><strong>1st Generation: Napster</strong><br>Napster is the first generation of music online download company, the architecture of Napster is centralized. The most important part is the index server. The index server stores lists of peers. When a user wants to search for a file, it sends file location request to the index server, and obtain a list of peers with the file, towards which it will send request. Finally the target file is delivered back to the user.<br>Another and the final critical step is, users who gain a file now being responsible for storing and distributing the file (update index to the index server).</p>
+<p><strong>2nd Generation: Gnutella</strong><br>Gnutella designed as a P2P architecture in reaction to issues facing Napster. It is fully decentralized and fairly anonymous. In order to join the network, user must find at least one peer in the network. Communicating with those peers can the new user has knowledge of many peers.<br>In order to prevent from message flooding when querying, Gnutella came up with a limited-scope flooding protocol, that puts a <strong>“peer count” on depth of query</strong>.</p>
+<p><strong>3rd Generation: Supernodes</strong><br>The representative platforms are <strong>Skype</strong> and <strong>KaZaa</strong>. Supernodes evolve from ordinary nodes, and may be used for routing and searching. Limitations are: 1) searching and routing within the network are often unreliable, because network is very dynamic, even supernodes come and go as well. Also the bandwidth cost grows exponentially with the size of network (overwhelm slow nodes results in dropped queries and replies); 2) Protocols have evolved, limiting querying speed and tiered system of supernodes.</p>
+<hr>
+<h2 id="DHT-Distributed-Hash-Table"><a href="#DHT-Distributed-Hash-Table" class="headerlink" title="DHT (Distributed Hash Table)"></a><strong>DHT (Distributed Hash Table)</strong></h2><p>DHT has property like a normal traditional hash table, which contains (key, value) pairs that stores file name (key) and IP address (value). All the index of files combined into a very large hash table. In order to store the large table, it is divided into different small chunks and distributed to every participated nodes in the system. The distributing rules depends on specific system. Common rules are <strong>CAN</strong>, <strong>Chord</strong>, <strong>Pastry</strong> and <strong>Tapestry</strong>.</p>
+<p>In traditional hash table, removing a bucket forces remapping all the entire keyspace, whereas in DHT, consistent-hashing determines that removing a node does not rearrange the whole keys.</p>
+<hr>
+<h2 id="Different-DHT-Rules"><a href="#Different-DHT-Rules" class="headerlink" title="Different DHT Rules"></a><strong>Different DHT Rules</strong></h2><p><strong>Content Addressable Network</strong></p>
+<p>The CAN architecture is a d-dimensional toroidal coordinate space. It is partitioned into “rectangular” zones, each peer owns one zone. When adding a new node, a random space gets split, while all the other nodes are not affected. Node peers have knowledge of their neighboring nodes (sharing the same boundaries).</p>
+<p>The network is quite fault-tolerant and scalable. If one node goes down, a lot of alternative routes could be provided. Every peer has replica for availability.</p>
+<p><strong>Chord</strong></p>
+<p>The keyspace architecture of <a href="http://blog.csdn.net/wangxiaoqin00007/article/details/7374833" target="_blank" rel="external">Chord</a> is a ring. Every node knows its predecessor and successor. It introduces a finger table which contains at least 2^(i - 1) after itself. Searching begins from its successor, when its successor does not contains the resource, search from the furthest node in the finger table. Iterate these steps.</p>
+<p>After maximum of O(logN) number of nodes that must be contacted can we find the final resource.</p>
+<blockquote>
+<p><strong>Notes: Adding a node</strong><br>Every node within Chord will automatically run a heartbeat check to its finger table and its successor to check if its successor’s predecessor is itself or has been changed, which we called it stabilization.<br>So there are four steps referring to node joining:<br><code>Join()</code><br><code>Stabilize()</code><br><code>Notify(O)</code><br><code>Fix_fingers()</code></p>
+</blockquote>
+<p><strong>Pastry</strong><br>The keyspace architecture of Pastry is a modular ring with size of 2^128, the joining and departing rules are like in Chord. </p>
+<hr>
+<h2 id="Summary-of-Pastry"><a href="#Summary-of-Pastry" class="headerlink" title="Summary of Pastry"></a><strong>Summary of <a href="http://research.microsoft.com/en-us/um/people/antr/PAST/pastry.pdf" target="_blank" rel="external">Pastry</a></strong></h2><ul>
+<li>Pastry performs application-level routing and object location in a potentially very large overlay network of nodes connected via the Internet. </li>
+<li>Every node has a unique identifier (nodeId). When presented with a message and a key, the key would match the closest nodeId among all currently alive Pastry nodes. Each node keeps track of its immediate neighbors in the nodeId space, and notifies applications of new node arrivals, node failures and recoveries.</li>
+<li>Pastry takes network locality into account by introducing into leaf table.</li>
+<li>The experimental in the paper takes up to 100,000 nodes to confirm Pastry’s scalability, efficiency, self-organize and adapt to node failures, and its good network locality properties.</li>
+<li>The number of expected routing steps is $log_2bN$, and [L/2] adjacent nodes won’t fail simultaneously.</li>
+<li>Joining and departing mechanism is similar to <a href="http://blog.csdn.net/wangxiaoqin00007/article/details/7374833" target="_blank" rel="external">Chord</a>.<blockquote>
+<p><strong>NOTES: Design of routing</strong></p>
+<ol>
+<li>Given a message, the node first checks to see if the key falls within the leaf set, if so, message would be forwarded to the closest node.</li>
+<li>If there’s no match, check the routing table. The message is forwarded to a node that shares a common prefix with the key by at least one more digit. If the routing table is empty or the associated node is unreachable, forward the message (at least) to the node with same length of nodeId, and is numerically closer to the key then the present nodeId.<br>The procedure would converge in every iteration, because in each step, <strong>the message is forwarded to a node that either shares a longer prefix with the key, or same length prefix but numerically closer to the key than the local node.</strong></li>
+</ol>
+</blockquote>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Group Communication & Consensus]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Group_Communication_&_consensus/</url>
+      <content type="html"><![CDATA[<h2 id="Part-1-Group-Communication"><a href="#Part-1-Group-Communication" class="headerlink" title="Part 1: Group Communication"></a>Part 1: Group Communication</h2><ul>
+<li><strong>Multicast routing: two approaches</strong><ul>
+<li>Flooding: Messages sent to neighbors, percolating from sender throughout the network. In this approach we only need local knowledge at each other.<ul>
+<li>If it is played in an uncontrolled flooding way, then problem would be if two router forward message to each other, there would be an endless retransmission.<br>-&gt; One solution is that we add a unique sequence number when sending a message. Each message would only forward message it has never seen before.<br>-&gt; If you don’t want to use sequence number, then you can choose <strong>reverse path forwarding</strong>. Messages are forwarded to all neighbors, but only if it arrived on shortest path back to source. To be clearer, messages would only get forwarded only when messages are coming from sender directly.<br>-&gt; More efficiently, <strong>pruning control</strong> could send messages upstream if no attached hosts are in the mcast group. This will prevent unnecessary message multicasting.</li>
+</ul>
+</li>
+<li>Spanning tree: Messages will be sent along predetermined paths, the shortcoming is that it requires complex maintenance of routing tree.</li>
+</ul>
+</li>
+<li><strong>Multicast communication</strong><ul>
+<li>Reliable multicast<br>Reliable multicast builds on top of basic multicast, the general mechanism is that if a message is delivered to any process in group, then it will be delivered to all process in group<br><strong>Hold-back queue</strong>: messages should be delivered in certain order<ul>
+<li>Multicast ordering requirements:<br><strong>Unordered</strong>:  rare<br><strong>FIFO Order</strong>: If a correct process multicast m1 -&gt; multicast m2, then every correct process delivers m1 before m2. Implemented by sequence number.<br><strong>Causal Order</strong>: Stronger version of FIFO Order, implemented by timestamp.<br><strong>Total Order</strong>: implemented by ISIS algorithm</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Notes: Difference between FIFO and Causal</strong><br>According to the professor, FIFO means that the messages are put into the hold-back queue in the order that they are received by the node. The node may see the message in non-causal order. Causal order means that the node sorts the messages in order according to its causality (in certain circumstances, the timestamp).</p>
+</blockquote>
+<p>ISIS Algorithm</p>
+<blockquote>
+<ul>
+<li>Each Process keeps integers A and P<ul>
+<li>is largest agreed sequence # it has seen in the group - P is the largest sequence # it has proposed</li>
+</ul>
+</li>
+<li>Receivers reply with a proposed sequence #, Max(A,P)+1 (and put in hold-back queue)</li>
+<li>Psender collects proposals from each receiver and multicasts a reply with largest one (now an agreed #)</li>
+<li>Receivers then insert message in hold-back queue sorted by smallest agreed sequence #<br>Messages at head with agreed sequence # are delivered</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="Part-2-Consensus"><a href="#Part-2-Consensus" class="headerlink" title="Part 2 Consensus"></a>Part 2 Consensus</h1><p><strong>Byzantine Generals</strong><br>Byzantine general problem describes a situation that some processes could be malicious processes. There are two different simple situations:</p>
+<ol>
+<li>Commander lies. If the commander lies, then different Lieutenants may get different commands and cannot get consensus on the order.</li>
+<li>Lieutenant lies. If Lieutenant lies, then the message sending between different Lieutenants may be inconsistent.</li>
+</ol>
+<p><strong>Solution:</strong><br>So the question relies on how to reach consensus among Lieutenants. If the number of Lieutenants (N) is more than the faulty Lieutenants (f), then it would be sufficient to reach consensus.<br><code>N ≥ 3f + 1</code></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Global State]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Global_State/</url>
+      <content type="html"><![CDATA[<h2 id="Deadlock"><a href="#Deadlock" class="headerlink" title="Deadlock"></a><strong>Deadlock</strong></h2><p>Deadlock occurs if the wait-for graph has a loop in it. If an observer wants to see the loop, he must have a consistent, global view of the entire system. Phantom deadlocks occurs when the latency in the system causes us to miss critical events.</p>
+<hr>
+<h2 id="Cut"><a href="#Cut" class="headerlink" title="Cut"></a><strong>Cut</strong></h2><p>A cut slices through all event histories, and splits each process history into “complete” and “future”.<br>The only thing that needs notice is that cut should be <strong>inconsistent</strong>. </p>
+<hr>
+<h2 id="Taking-snapshots-of-system-state"><a href="#Taking-snapshots-of-system-state" class="headerlink" title="Taking snapshots of system state"></a><strong>Taking snapshots of system state</strong></h2><p>Chandy-Lamport Snapshot is a distributed algorithm to record a consistent global state for the system. It is extremely useful for analyzing stable properties.</p>
+<blockquote>
+<p><strong>Notes: The algorithm</strong><br>The algorithm is divided into two parts: the Marker sending rule and the Marker receiving rule. The special marker message is to specify the state of the system. Every process records state locally.</p>
+<ul>
+<li>Marker Sending Rule:<br>Process starts the algorithm by recording its state, and sends the marker message to every other process except itself</li>
+<li>Marker Receiving Rule:<br>There are two situations:<br>1) If receiving process does not record its state, it will create an empty list for each process, then record the state following the received message. Finally send messages as the Marker Sending Rule.<br>2) If has already recorded, then record the state associate with the sender process</li>
+<li>Non- Marker Receiving Rule:<br>the receiving process place the message at the end of the list.</li>
+</ul>
+</blockquote>
+<p>The algorithm would probably not telling you some states (not recorded), and the final recorded state never is a global state. The final state would happen only if the first marker message is horizontal.</p>
+<p>There are some observations about the algorithm: 1) The algorithm will definitely terminate; 2) The recorded state is a globally consistent state, but is not necessarily the system will actually occupied. <strong>But it doesn’t matter because no one will observe that anyway.</strong> 3) Any stable properties that are true for the recorded state are also true for all post snapshot states</p>
+<hr>
+<h2 id="Distributed-Debugging"><a href="#Distributed-Debugging" class="headerlink" title="Distributed Debugging"></a><strong>Distributed Debugging</strong></h2><p>If we list all the possible states (lattice), then we can test if some property is possibly true, by <strong>finding a set of states that all linearization will pass through</strong></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Replication Communication]]></title>
+      <url>http://DavidCorn.github.io/2016/05/16/Replication_Communication/</url>
+      <content type="html"><![CDATA[<h2 id="State-Machine-Approach"><a href="#State-Machine-Approach" class="headerlink" title="State Machine Approach"></a><strong>State Machine Approach</strong></h2><p>State machine consists of state variables and commands. State variable means an encoding of state, command means functions that can be performed.</p>
+<p>Anything that can be structured as procedures and procedure calls can be structured as state machines and requests.<br><a id="more"></a></p>
+<blockquote>
+<p><strong>Notes: Ordering with Paxos</strong><br>Paxos allows replicas to come to consensus on the order of requests;<br>it makes a proposal that Nth command number should have value V (function and parameters), and state machine can execute commands 1..n if no gaps<br><strong>What about gaps?</strong><br>If leader fails, then gaps need to be filled. Either by learning previous values, or finding out that no one has proposed that value</p>
+</blockquote>
+<p>State machine is a good conceptual model for other ds concepts and protocols, and failure masking using voting. The results are distinguishable from a non-faulty server.</p>
+<p>Then disadvantage of state machine is about overhead, hard to understand concurrent requirements and too much redundancy.</p>
+<hr>
+<h2 id="Primary-Back-up-Approach"><a href="#Primary-Back-up-Approach" class="headerlink" title="Primary Back-up Approach"></a><strong>Primary Back-up Approach</strong></h2><p><strong>Basic prototype</strong></p>
+<p>Client send request through front end, to the primary node of the remote replica manager, then the primary <strong>atomically</strong> executes the request. If it changes any state, then it sends the updated states, response, request id to the backup nodes. Backup nodes send ACK when finish executing, and primary node send back response to the front end, which response to the client.</p>
+<p><strong>Some Optimizations</strong></p>
+<p>Client could send to any remote node through front end. If backup node receives the request, it forward to the primary node first, the rest steps are the same.</p>
+<p><strong>Reading Optimization</strong></p>
+<p>In order to offload read workload from primary node, read request could send to any of the nodes and does not need to forward to the primary node.</p>
+<p><strong>Primary Migration</strong></p>
+<p>Particularly in mobile computing, nodes could be disconnected from others. In order to solve that problem, we allow migration from backup to primary. </p>
+<p>Prior to disconnection, the node becomes primary from backup. Then while in disconnecting period, data could still be updated and transmitted, (old) data could still be read from other processes. When recovery, back-to-live node would get the updated states.</p>
+<hr>
+<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a><strong>MapReduce</strong></h2><p><strong>Execution</strong></p>
+<ol>
+<li>User program invokes MapReduce library to perform task;</li>
+<li>Library forks processes on several machines, one master and several workers;</li>
+<li>Input data splits into many pieces, each piece contains 16-64MB, and one piece will be handled by one map. Input data is located in HDFS.</li>
+<li>Master assigns some workers to do the map job, and some workers to do the reduce job, and between the map and reduce job, partition function partitions the intermediate data for ordering.</li>
+</ol>
+<p><strong>Fault Tolerant</strong></p>
+<p>What happens when a worker dies?</p>
+<ol>
+<li><p>If a map worker dies (periodically pinged by master), master masks the map task as idle and reassigns the task, intermediate data may get lost.<br>To be more specific, the machine would reset to its initial state, and they are ready to be scheduled to other workers. Even for completed map workers do they need to reassign, because <strong>the data is stored on their machines and is hence unusable.</strong></p>
+</li>
+<li><p>If a reducer dies (periodically pinged by master), it may not be any trouble because a reducer might have already completed the calculation, and doesn’t need to be reassigned.</p>
+</li>
+<li><p>Master would make checkpoints of its data structures periodically. If a master dies, it would start a new copy from its last checkpoint status. Google MapReduce doesn’t implement any other protocols, as master failure is rare.</p>
+</li>
+<li>Map workers write intermediate data to local disks, and reduce workers remotely read (RPC) data and write to output files.</li>
+</ol>
+<p>Reference : <a href="http://map-reduce.wikispaces.asu.edu/" target="_blank" rel="external">http://map-reduce.wikispaces.asu.edu/</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Clock_mutual_exclusion_and_elections]]></title>
+      <url>http://DavidCorn.github.io/2016/05/05/Clock-mutual-exclusion-and-elections/</url>
+      <content type="html"><![CDATA[<h2 id="Part-1-Time-and-Clock"><a href="#Part-1-Time-and-Clock" class="headerlink" title="Part 1 Time and Clock"></a><strong>Part 1 Time and Clock</strong></h2><p>Lamport’s Logical Clock concerns the <strong>events order</strong> in system, it could let us know the order of events within 1) same thread; 2) different processes in same host; 3) different computers.</p>
+<p>The core concepts of logical clock is described as “<strong>happened before</strong>“ (causally), and the relationship is transitive. For example, if <code>&quot;a-&gt;b&quot;</code>, and <code>&quot;b-&gt;c&quot;</code>, then <code>&quot;a-&gt;c&quot;</code> must be true.</p>
+<p>If we define the timestamp of a specific event a as <code>Ci(a)</code>, i means the index of process <code>Pi</code>, if <code>&quot;a-&gt;b&quot;</code>, then <code>&quot;Ci(a) &lt; Ci(b)&quot;</code>.</p>
+<p>Calculating <code>Ci</code>: if the previous timestamp of the process is Tm, then the current timestamp should be <code>Ck:=max{Ck,Tm}+1</code>, Ck in the bracket means the sender’s latest timestamp.</p>
+<p>Such logical clock mechanism would clearly identify the events ordering when sending a message. However, the events ordering could not be deducted by reversely comparing the timestamp, to be more clear, <code>&quot;C(a) &gt; C(b)&quot;</code> can’t tell <code>b-&gt;a</code>, as you can see in the sequence above.</p>
+<p>In order to solve that problem, we introduce <strong>vector clock</strong>.</p>
+<p>We define <code>Pi</code> has timestamp <code>Ci=(Ci[1], Ci[2],...,Ci[n])</code>. When a process execute a local message, it simply updates its own timestamp (e.g. by adding 1) <code>Ck:=Ck+1</code>; if a process receives a remote message, the timestamp that doesn’t represent its own would update with the larger one between the received timestamp and its previous timestamp. its own timestamp would update like this: <code>Ck:=max{Ck,Tm}+1</code>.<br>over B: (1,3,3)</p>
+<blockquote>
+<p><strong>Note</strong>: How vector clock overcome the reverse comparison limitation of logical clock?</p>
+<ul>
+<li>When it comes to <strong>comparison</strong>, only if all the elements in the timestamp vector is smaller or equal than the compared vector, can we say that the event happens before the compared event, and <strong>vice versa</strong>!</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="Part-2-Mutual-Exclusions"><a href="#Part-2-Mutual-Exclusions" class="headerlink" title="Part 2 Mutual Exclusions"></a><strong>Part 2 Mutual Exclusions</strong></h2><p><strong>Strategy</strong></p>
+<ul>
+<li><p>Centralized ME<br>A process Pi sends a request message to a coordinator process, asking for granted permission to access the coordinator. When process Pi receives the granted message and executes in the critical session, it would send release message to the coordinator.</p>
+</li>
+<li><p>Distributed ME</p>
+</li>
+<li><p>Token-based algorithm<br>The processes only have to know about their successors. We put the processes into the ring. When process needs critical session, it would send token into the token ring. If current process needs CS, holds token and execute. Else passes the token to its successor.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Notes:</strong> Problem of token-based algorithm</p>
+<ul>
+<li>The algorithm is not fault tolerant. What if the token is lost? What if the token is duplicated? Which one goes first? Block situations?</li>
+<li>The algorithm would cause performance problems such as synchronization delay and response delay by passing tokens to successors one by one.</li>
+</ul>
+</blockquote>
+<ul>
+<li>Ricart &amp; Agrawala algorithm (Improvement of Lamport’s algorithm)<br>The algorithm uses logical clock to track down events order, broadcasting event timestamps. When the receiver receives multiple timestamps, it would compare the timestamps, making the larger one to stay in queue and forwarding “OK” message to the small timestamp sender.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Problems of Ricart &amp; Agrawala algorithm</p>
+<ul>
+<li>Still not fault tolerant because of broadcasting, what if one receiver fails down?</li>
+<li>Also, the algorithm is only optimal with respect number of messages. If the message get to be flooding, the network will be burdened because of broadcasting.</li>
+</ul>
+</blockquote>
+<ul>
+<li>Maekawa’s algorithm</li>
+</ul>
+<p>Maekawa’s algorithm overcomes flooding message problem in Ricarts &amp; Agrawala’s algorithm by configuring <strong>Request Sets</strong>, it also introduces concepts of “vote” to records whether the process has granted some other process to enter the critical session.</p>
+<blockquote>
+<p><strong>Four properties</strong></p>
+<ul>
+<li><strong>Pairwise Non-null Intersection Property</strong><br>(<strong>required</strong>)<br>It guarantees that no two groups would enter CS at the same time. (CS is for critical session)<br>rest of the rules are not mandatory, but will let the algorithm be more efficient</li>
+<li><strong>Self-contain property</strong><br>One less messages need to send through network per group</li>
+<li><strong>Equal-effort property</strong><br>Which means that each group has same amount of members. Used for balancing the load of each nodes.</li>
+<li><strong>Equal-responsibility property</strong><br>Which means that every node is in the same number of groups. Used for relieving burdens.</li>
+</ul>
+</blockquote>
+<p><strong>Leader Election</strong></p>
+<ul>
+<li><p>Ring-based elections<br>Any Pi begins election by sending election messages to its successor. It will find the largest process id and select it as the leader. If leader is selected, it would send “victory” message to other processes.</p>
+</li>
+<li><p>Bully algorithm<br>Happens when Pi detects failure of coordinator:<br>Bully algorithm also relies on the process id. After a process broadcasts election messages to others, the processes with smaller id do not response, meanwhile the processes with larger id response with answering messages, and start other elections<br>To the sender itself, if it doesn’t receive answering messages, it broadcasting victory message. If it receives answering messages, it waits for victory messages. If it doesn’t receive victory messages after a while, it would restart election.</p>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Communication_and_Distributed_Objects]]></title>
+      <url>http://DavidCorn.github.io/2016/05/05/Communication-and-Distributed-Objects/</url>
+      <content type="html"><![CDATA[<h2 id="Features-of-various-communication-paradigms"><a href="#Features-of-various-communication-paradigms" class="headerlink" title="Features of various communication paradigms"></a>Features of various communication paradigms</h2><p><strong>Message Passing</strong></p>
+<ul>
+<li><p>Basic interprocess communication among distributed system. You need to konw 1) the message; 2) the name of source; 3) the destination process; 4) data type expected for process.</p>
+</li>
+<li><p>MP is performed using <strong>send(receiver, message)</strong> and <strong>receive(sender, message)</strong> primitives;</p>
+</li>
+<li><p>Pros and cons of non-blocking send() and receive(): <strong>advantage</strong> is that the CPU will not remain idle, <strong>disadvantage</strong> is that the sender process will never know whether its local process has been cleared or not.</p>
+</li>
+<li><p>Buffering: Buffering mainly deals with the embarrassed situation that when sender sends a message whose destination process is not initiated yet or not found by now. The buffered messages are buffered until the messages are ready to be processed.</p>
+</li>
+<li><p>In MP, the explicit movement of data is exposed</p>
+</li>
+</ul>
+<p><strong>Remote Procedure Call</strong></p>
+<ul>
+<li><p>Higher level of abstraction.</p>
+</li>
+<li><p>Message passing leaves the programmer with the burden of the explicit control of the movement of data. Remote procedure calls (RPC) relieves this burden by increasing the level of abstraction and providing semantics similar to a local procedure call.</p>
+</li>
+<li><p>RPC is performed using syntax <strong>call procedure_name()</strong>, <strong>receive procedure_name()</strong>, <strong>reply(caller, result)</strong>.</p>
+</li>
+<li><p><strong>Distributed Shared Memory</strong></p>
+</li>
+<li><p>Two resources for understanding: <a href="http://www.slideshare.net/SheriMeri/message-passing-remote-procedure-calls-and-distributed-shared-memory-as-communication-paradigms-for-distributed-systems-remote-procedure-call-implementation-using-distributed-algorithms" target="_blank" rel="external">slides</a>, <a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=3574842F26F1C9865BAC4204F5463D21?doi=10.1.1.95.2490&amp;rep=rep1&amp;type=pdf" target="_blank" rel="external">Message Passing, Remote Procedure Calls and Distributed Shared Memory as Communication Paradigms for Distributed Systems</a></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Notes: Why not message passing but RPC?</strong></p>
+<ol>
+<li>Too explicit, though least abstract yet complicated for programmers, programmers should take care of all synchronization codes;</li>
+<li>Programmers may have to code format conversion, flow control and error handling;</li>
+<li>MP is I/O oriented, rather than request/result oriented. RPC hides all MP I/O from programmers. It looks like a procedures call – which is actually invoking procedures on a server.</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="Summary-of-Birrel84-Implementing-Remote-Procedure-Call"><a href="#Summary-of-Birrel84-Implementing-Remote-Procedure-Call" class="headerlink" title="Summary of [Birrel84. Implementing Remote Procedure Call]"></a>Summary of [Birrel84. Implementing Remote Procedure Call]</h2><p><strong>Goals of Implementing RPC</strong></p>
+<ul>
+<li><p>Make distributed computation easier. Remove unnecessary difficulties, leaving only fundamental difficulties: timing, independent failure of component, and the coexistence of independent execution environments;</p>
+</li>
+<li><p>Make efficient RPC calls;</p>
+</li>
+<li><p>Make RPC semantics just like local procedure calls;</p>
+</li>
+<li><p>Provide secure RPC communication;</p>
+</li>
+<li><p><strong>Basic structure and transmitting process</strong></p>
+<ol>
+<li>The program structure is based on the concept of stubs;</li>
+<li>When the programmer wishes to make a remote procedure call, he makes a <strong>normal local call</strong>, and the local call will be automatically packed in the user-stub, and transmitted to the callee machine (remote machine) through <strong>call procedure_name()</strong> by RPCRuntime, the caller machine (client machine) would then be suspended;</li>
+<li>When the RPCRuntime in the Callee machine receives the packet,it would send the packet to the server-stub and unpack the packet, the server would do a <strong>perfect local call</strong> using the unpack arguments;</li>
+<li>After executing the data, the server would pack the results and send it back to the caller machine. Procedure here is similar as previous.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Binding</strong></p>
+<ul>
+<li><p>Binding with whom? -&gt; Naming</p>
+</li>
+<li><p>The semantics of an interface name are not dictated by the RPC package;</p>
+</li>
+<li><p>However the means by which an exporter uses the interface name to locate an exporter are dictated by the RPC package.</p>
+</li>
+<li><p>how to determine the machine address of the callee? -&gt; Location</p>
+</li>
+<li><p><a href="https://users.soe.ucsc.edu/~sbrandt/221/Papers/Dist/schroeder-tocs84.pdf" target="_blank" rel="external">Grapevine distributed database</a></p>
+</li>
+</ul>
+<p><strong>Complecated calls</strong></p>
+<ul>
+<li><p>Reasonable strategy: Retransmitting</p>
+</li>
+<li><p>The caller periodically sends probes to the callee, to check if the callee has crashed or if there’s some serious communication failure, and to notify the user of an exception. If there’s acknowledgement feedback, then the server has no failures.</p>
+</li>
+<li><p>Retransmitting handles lost packets, long duration calls, and long gaps between calls.</p>
+</li>
+<li><p>Cons: only detects failure, not callee deadlocks; When there’s long duration calls or large gaps between calls, message could be in big numbers.</p>
+</li>
+<li><p><strong>Alternative strategy</strong>: to have the recipient of a packet spontaneously generate an acknowledgement if he doesn’t generate the next packet significantly sooner than the expected retransmission interval. Like a heartbeat checking method.</p>
+</li>
+</ul>
+<h2 id="Limitation-of-RPC"><a href="#Limitation-of-RPC" class="headerlink" title="Limitation of RPC"></a>Limitation of RPC</h2><ul>
+<li><p>Pointer has no meaning when it refers to different machines, so no shared address space is a problem;</p>
+</li>
+<li><p>Binding data happens at run-time, which would consume time;</p>
+</li>
+<li><p>“Interesting” run-time errors may happen (dynamically linking errors);</p>
+</li>
+<li><p>Failure machines are independent, somewhere the communication can be transmitive;</p>
+</li>
+<li><p>Security issues;</p>
+</li>
+<li><p>Tough to do broadcast. To do broadcast thing in RPC you should do multiple RPCs based on the number of remote machines you want to communicate with.</p>
+</li>
+</ul>
+<hr>
+<h2 id="Distributed-Objects"><a href="#Distributed-Objects" class="headerlink" title="Distributed Objects"></a>Distributed Objects</h2><p>Distributed Objects are layers between OS and application, it hides the OS and network stack, solves and extends RPC.</p>
+<h2 id="CORBA-Common-Object-Request-Broker-Architecture"><a href="#CORBA-Common-Object-Request-Broker-Architecture" class="headerlink" title="CORBA (Common Object Request Broker Architecture)"></a>CORBA (Common Object Request Broker Architecture)</h2><ul>
+<li><p>CORBA is a standard DS mechanism, that makes building DS easier. ORB is a broker that helps figure out how senders match out to receivers.</p>
+</li>
+<li><p>CORBA is language and location transparent, which means you can write it in any languages and the client and server don’t know each others’ locations.</p>
+</li>
+<li><p>They use a GIOP (General Inter-ORB Protocol) common communication protocol to talk to each other in different OS and different machines.</p>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Concepts of DS]]></title>
+      <url>http://DavidCorn.github.io/2016/05/05/Concepts-of-DS/</url>
+      <content type="html"><![CDATA[<h2 id="DS-Concepts"><a href="#DS-Concepts" class="headerlink" title="DS Concepts"></a>DS Concepts</h2><ul>
+<li>A distributed system is one where several computations coordinate across machine boundaries<ul>
+<li>To coordinate, they must communicate, and must know of each other’s existence</li>
+<li>To coordinate, they must have common things (state) to “talk” about</li>
+</ul>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+<h2 id="DS-Challenges"><a href="#DS-Challenges" class="headerlink" title="DS Challenges"></a>DS Challenges</h2><ol>
+<li>Global Resource Access</li>
+<li>Concurrency</li>
+<li>High Availability / Fault Tolerance (<strong>Inevitable</strong>)</li>
+<li>Transparency</li>
+<li>Management and Maintenance</li>
+<li>Security</li>
+<li>List item</li>
+<li>Scalability</li>
+<li>Timeliness (<strong>Intolerant</strong> for real-time system)</li>
+<li>Openness (Publishing key programming interfaces)</li>
+</ol>
+<blockquote>
+<p><strong>Note: simple Web-based DS work</strong></p>
+<p>Client-server</p>
+<ul>
+<li>Clients: Generalized, large number, consumer of service</li>
+<li>Protocol: File retrievals, SQL, HTTP over TCP/IP</li>
+<li>Server: specialized, a provider of services (file services, db services, groupware services, web services)</li>
+<li>Naming, authentication, authorization, auditing and logging, billing</li>
+<li>Load balancing</li>
+</ul>
+<p>Difference between consistency and consensus</p>
+<p>Consistency means the content and time ordering should be consistent in different nodes, consensus means that different nodes share an agreement on certain protocol or value.</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+  
+  
+</search>
