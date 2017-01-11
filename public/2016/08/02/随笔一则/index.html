@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="Distributed_System," />
+  <meta name="keywords" content="All_about_life," />
 
 
 
@@ -55,7 +55,7 @@
 
 
 
-  <title> Paxos algorithm // 土豆馅饼俱乐部 </title>
+  <title> 随笔一则 // 土豆馅饼俱乐部 </title>
 </head>
 
 <body>
@@ -166,7 +166,7 @@
           
           
             
-              Paxos algorithm
+              随笔一则
             
           
         </h1>
@@ -174,14 +174,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2016-05-16
+          发表于 2016-08-02
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/DS-Notes/">DS_Notes</a>
+              <a href="/categories/Life/">Life</a>
 
               
               
@@ -194,8 +194,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2016/05/15/Paxos_Algorithm/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/15/Paxos_Algorithm/"></span>
+            <a href="/2016/08/02/随笔一则/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/随笔一则/"></span>
             </a>
           </span>
           
@@ -209,36 +209,8 @@
       
 
       
-        <h2 id="Conceptions-and-Assumptions"><a href="#Conceptions-and-Assumptions" class="headerlink" title="Conceptions and Assumptions"></a><strong>Conceptions and Assumptions</strong></h2><p>Paxos algorithm is one of the most brilliant ideas (perhaps the most brilliant, according to <a href="http://research.google.com/pubs/author24014.html" target="_blank" rel="external">Michael Burrows</a>) talking about how fault-not-so-tolerant system reaches consistency on some value.</p>
-<p>Above all, there are some assumptions:</p>
-<ol>
-<li>Assume that all the processors are <strong>non-evil</strong> processors, which means we consider the system as non-byzantine system;</li>
-<li>All processes communicate with asynchronous messages;</li>
-<li>All processes have durable storage available which can be read after a process failure.</li>
-</ol>
-<p>Based on the assumptions above, Paxos guarantees that <strong>whatever faults happens in the system, the consistency protocol would never get wrong</strong>.<br><a id="more"></a></p>
-<h2 id="Roles-in-Paxos"><a href="#Roles-in-Paxos" class="headerlink" title="Roles in Paxos"></a><strong>Roles in Paxos</strong></h2><ul>
-<li><strong>Proposers</strong>: They propose a value to have consensus on.<ul>
-<li><strong>Leader: </strong> A distinguished proposer, required to make progress.</li>
-</ul>
-</li>
-<li><strong>Acceptors: </strong> They hear about the proposals and accept them.</li>
-<li><strong>Learners: </strong> They wish to learn about the agreed values.</li>
-</ul>
-<h2 id="One-Value-Scenario"><a href="#One-Value-Scenario" class="headerlink" title="One Value Scenario"></a><strong>One Value Scenario</strong></h2><p>First we describe the situation on how one value is agreed in Paxos.</p>
-<ol>
-<li>Proposer send $M_{prepare}$ containing value $V$ to a quorum of Accepters, the proposal contains a globally unique number $N$.</li>
-<li>Accepter keeps track of its <strong>highest</strong> previous accepted number $N<em>{prev}$ and its value $V$. When it receives $M</em>{prepare}$, it compares $N$ and $N<em>{prev}$, if $N &gt; N</em>{prev}$, send $M_{promise}$ back;</li>
-<li>When Proposer receives a quorum of $M<em>{promise}$, then it send $M</em>{accept}$ to the quorum of Acceptors.</li>
-<li>Upon receiving the accept message, if $N &gt; N_{prev}$, it must accept the message. After reaching consistency between acceptors, they send accepted message to the learner.</li>
-</ol>
-<h2 id="Multi-value-Scenario"><a href="#Multi-value-Scenario" class="headerlink" title="Multi-value Scenario"></a><strong>Multi-value Scenario</strong></h2><p>If different proposers send multiple values, what happened? The author of <strong><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf" target="_blank" rel="external">Paxos Made Simple</a></strong> (which is not simple at all…) describes the general phases.</p>
-<blockquote>
-<p><strong>Notes: General Phases of Paxos</strong><br><strong>Phase 1</strong><br>(a) A proposer selects a proposal number n and sends a prepare request with number n to a majority of acceptors.<br>(b) If an acceptor receives a prepare request with number n greater than that of any prepare request to which it has already responded, then it responds to the request with a promise not to accept any more proposals numbered less than n and with the highest-numbered pro-posal (if any) that it has accepted.<br><strong>Phase 2</strong><br>(a) If the proposer receives a response to its prepare requests (numbered n) from a majority of acceptors, then it sends an accept request to each of those acceptors for a proposal numbered n with a value v , where v is the value of the highest-numbered proposal among the responses, or is any value if the responses reported no proposals.</p>
-</blockquote>
-<p><strong>Situation 1:</strong><br>If the second proposal receives at the time when the first proposal is accepted, then the Acceptor would send $M_{promise}$ back with its current $N$ and $V$. Upon receiving the $N$ and $V$, the second Proposer then broadcast the message with certain $V$.</p>
-<p><strong>Situation 2: </strong><br>If before accepting the value, the proposal receives a proposal with a bigger $N$ (smaller $N$ would be discarded directly), then the pending accepted $V$ would be discarded. The original $M<em>{accepted}$ would be replaced as $M</em>{rejected}$.</p>
-<p>This <a href="http://codemacro.com/2014/10/15/explain-poxos/" target="_blank" rel="external">blog</a> gives a very easy and clear overview of Paxos algorithm. <a href="https://en.wikipedia.org/wiki/Paxos_%28computer_science%29" target="_blank" rel="external">Wiki</a> also did a good job on this.</p>
+        <p>睡醒再写=。=</p>
+<p>反正也没人看hhh</p>
 
       
     </div>
@@ -247,7 +219,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Distributed-System/"> #Distributed_System </a>
+            <a href="/tags/All-about-life/"> #All_about_life </a>
           
         </div>
       
@@ -256,13 +228,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/15/Naming/">Naming</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/15/Types_of_Consistency/">Type of consistency</a>
+              <a href="/2016/05/18/Segment_tree/">Segment Tree</a>
             
           </div>
         </div>
@@ -305,8 +275,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2016/05/15/Paxos_Algorithm/"
-               data-title="Paxos algorithm" data-url="http://DavidCorn.github.io/2016/05/15/Paxos_Algorithm/">
+          <div class="ds-thread" data-thread-key="2016/08/02/随笔一则/"
+               data-title="随笔一则" data-url="http://liuxueshiwusuo.github.io/2016/08/02/随笔一则/">
           </div>
         
       </div>
@@ -409,7 +379,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conceptions-and-Assumptions"><span class="nav-number">1.</span> <span class="nav-text">Conceptions and Assumptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Roles-in-Paxos"><span class="nav-number">2.</span> <span class="nav-text">Roles in Paxos</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-Value-Scenario"><span class="nav-number">3.</span> <span class="nav-text">One Value Scenario</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-value-Scenario"><span class="nav-number">4.</span> <span class="nav-text">Multi-value Scenario</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -427,7 +397,7 @@
         <div class="copyright">
   
   &copy; &nbsp; 
-  2016
+  2017
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>
