@@ -1,0 +1,681 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+    <meta name="description" content="专业留学咨询平台" />
+
+
+
+  <meta name="keywords" content="Distributed_System," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    analytics: {
+      google: ''
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+
+
+  <title> Peer to Peer System // 留学事务所 </title>
+</head>
+
+<body>
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">留学事务所</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<div class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              Peer to Peer System
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2016-05-16
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/DS-Notes/">DS_Notes</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/05/16/Peer_to_Peer_System/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/Peer_to_Peer_System/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <h2 id="History-P2P-System"><a href="#History-P2P-System" class="headerlink" title="History P2P System"></a><strong>History P2P System</strong></h2><p><strong>1st Generation: Napster</strong><br>Napster is the first generation of music online download company, the architecture of Napster is centralized. The most important part is the index server. The index server stores lists of peers. When a user wants to search for a file, it sends file location request to the index server, and obtain a list of peers with the file, towards which it will send request. Finally the target file is delivered back to the user.<br>Another and the final critical step is, users who gain a file now being responsible for storing and distributing the file (update index to the index server).</p>
+<p><strong>2nd Generation: Gnutella</strong><br>Gnutella designed as a P2P architecture in reaction to issues facing Napster. It is fully decentralized and fairly anonymous. In order to join the network, user must find at least one peer in the network. Communicating with those peers can the new user has knowledge of many peers.<br>In order to prevent from message flooding when querying, Gnutella came up with a limited-scope flooding protocol, that puts a <strong>“peer count” on depth of query</strong>.</p>
+<p><strong>3rd Generation: Supernodes</strong><br>The representative platforms are <strong>Skype</strong> and <strong>KaZaa</strong>. Supernodes evolve from ordinary nodes, and may be used for routing and searching. Limitations are: 1) searching and routing within the network are often unreliable, because network is very dynamic, even supernodes come and go as well. Also the bandwidth cost grows exponentially with the size of network (overwhelm slow nodes results in dropped queries and replies); 2) Protocols have evolved, limiting querying speed and tiered system of supernodes.</p>
+<hr>
+<h2 id="DHT-Distributed-Hash-Table"><a href="#DHT-Distributed-Hash-Table" class="headerlink" title="DHT (Distributed Hash Table)"></a><strong>DHT (Distributed Hash Table)</strong></h2><p>DHT has property like a normal traditional hash table, which contains (key, value) pairs that stores file name (key) and IP address (value). All the index of files combined into a very large hash table. In order to store the large table, it is divided into different small chunks and distributed to every participated nodes in the system. The distributing rules depends on specific system. Common rules are <strong>CAN</strong>, <strong>Chord</strong>, <strong>Pastry</strong> and <strong>Tapestry</strong>.</p>
+<p>In traditional hash table, removing a bucket forces remapping all the entire keyspace, whereas in DHT, consistent-hashing determines that removing a node does not rearrange the whole keys.</p>
+<hr>
+<h2 id="Different-DHT-Rules"><a href="#Different-DHT-Rules" class="headerlink" title="Different DHT Rules"></a><strong>Different DHT Rules</strong></h2><p><strong>Content Addressable Network</strong></p>
+<p>The CAN architecture is a d-dimensional toroidal coordinate space. It is partitioned into “rectangular” zones, each peer owns one zone. When adding a new node, a random space gets split, while all the other nodes are not affected. Node peers have knowledge of their neighboring nodes (sharing the same boundaries).</p>
+<p>The network is quite fault-tolerant and scalable. If one node goes down, a lot of alternative routes could be provided. Every peer has replica for availability.</p>
+<p><strong>Chord</strong></p>
+<p>The keyspace architecture of <a href="http://blog.csdn.net/wangxiaoqin00007/article/details/7374833" target="_blank" rel="external">Chord</a> is a ring. Every node knows its predecessor and successor. It introduces a finger table which contains at least 2^(i - 1) after itself. Searching begins from its successor, when its successor does not contains the resource, search from the furthest node in the finger table. Iterate these steps.</p>
+<p>After maximum of O(logN) number of nodes that must be contacted can we find the final resource.</p>
+<blockquote>
+<p><strong>Notes: Adding a node</strong><br>Every node within Chord will automatically run a heartbeat check to its finger table and its successor to check if its successor’s predecessor is itself or has been changed, which we called it stabilization.<br>So there are four steps referring to node joining:<br><code>Join()</code><br><code>Stabilize()</code><br><code>Notify(O)</code><br><code>Fix_fingers()</code></p>
+</blockquote>
+<p><strong>Pastry</strong><br>The keyspace architecture of Pastry is a modular ring with size of 2^128, the joining and departing rules are like in Chord. </p>
+<hr>
+<h2 id="Summary-of-Pastry"><a href="#Summary-of-Pastry" class="headerlink" title="Summary of Pastry"></a><strong>Summary of <a href="http://research.microsoft.com/en-us/um/people/antr/PAST/pastry.pdf" target="_blank" rel="external">Pastry</a></strong></h2><ul>
+<li>Pastry performs application-level routing and object location in a potentially very large overlay network of nodes connected via the Internet. </li>
+<li>Every node has a unique identifier (nodeId). When presented with a message and a key, the key would match the closest nodeId among all currently alive Pastry nodes. Each node keeps track of its immediate neighbors in the nodeId space, and notifies applications of new node arrivals, node failures and recoveries.</li>
+<li>Pastry takes network locality into account by introducing into leaf table.</li>
+<li>The experimental in the paper takes up to 100,000 nodes to confirm Pastry’s scalability, efficiency, self-organize and adapt to node failures, and its good network locality properties.</li>
+<li>The number of expected routing steps is $log_2bN$, and [L/2] adjacent nodes won’t fail simultaneously.</li>
+<li>Joining and departing mechanism is similar to <a href="http://blog.csdn.net/wangxiaoqin00007/article/details/7374833" target="_blank" rel="external">Chord</a>.<blockquote>
+<p><strong>NOTES: Design of routing</strong></p>
+<ol>
+<li>Given a message, the node first checks to see if the key falls within the leaf set, if so, message would be forwarded to the closest node.</li>
+<li>If there’s no match, check the routing table. The message is forwarded to a node that shares a common prefix with the key by at least one more digit. If the routing table is empty or the associated node is unreachable, forward the message (at least) to the node with same length of nodeId, and is numerically closer to the key then the present nodeId.<br>The procedure would converge in every iteration, because in each step, <strong>the message is forwarded to a node that either shares a longer prefix with the key, or same length prefix but numerically closer to the key than the local node.</strong></li>
+</ol>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Distributed-System/"> #Distributed_System </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/16/High_Availability/">High Availability</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/16/Group_Communication_&_consensus/">Group Communication & Consensus</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+      <div class="post-spread">
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      </div>
+    
+
+    
+      <div class="comments" id="comments">
+        
+          <div class="ds-thread" data-thread-key="2016/05/16/Peer_to_Peer_System/"
+               data-title="Peer to Peer System" data-url="http://liuxueshiwusuo.github.io/2016/05/16/Peer_to_Peer_System/">
+          </div>
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+          <!-- 多说热评文章-->
+          <p>热评文章</p>
+          <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="liuxueshiwusuo" />
+          <p class="site-author-name">liuxueshiwusuo</p>
+        </div>
+        <p class="site-description motion-element">专业留学咨询平台</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/DavidCorn" target="_blank">github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/qiyaoqin" target="_blank">linkedin</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.zhihu.com/people/qinqiyao" target="_blank">zhihu</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#History-P2P-System"><span class="nav-number">1.</span> <span class="nav-text">History P2P System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHT-Distributed-Hash-Table"><span class="nav-number">2.</span> <span class="nav-text">DHT (Distributed Hash Table)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Different-DHT-Rules"><span class="nav-number">3.</span> <span class="nav-text">Different DHT Rules</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary-of-Pastry"><span class="nav-number">4.</span> <span class="nav-text">Summary of Pastry</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2017
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">liuxueshiwusuo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qinqiyao"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+  
+  
+
+  
+   <!-- lazyload图片延迟加载 -->
+   <script type="text/javascript" src="/js/lazyload.js"></script>
+    <script type="text/javascript">
+      jQuery(function() {          
+          jQuery("#posts img").lazyload({
+            placeholder:"http://www.arao.me/loading.gif",
+              effect:"fadeIn"
+            });
+          });
+  </script>
+  
+</body>
+</html>
