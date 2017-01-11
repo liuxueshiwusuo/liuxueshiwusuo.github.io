@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[随笔一则]]></title>
-      <url>http://DavidCorn.github.io/2016/08/02/%E9%9A%8F%E7%AC%94%E4%B8%80%E5%88%99/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/08/02/%E9%9A%8F%E7%AC%94%E4%B8%80%E5%88%99/</url>
       <content type="html"><![CDATA[<p>睡醒再写=。=</p>
 <p>反正也没人看hhh</p>
 ]]></content>
@@ -13,7 +13,7 @@
     
     <entry>
       <title><![CDATA[Segment Tree]]></title>
-      <url>http://DavidCorn.github.io/2016/05/18/Segment_tree/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/18/Segment_tree/</url>
       <content type="html"><![CDATA[<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a><strong>Concepts</strong></h2><p>Segment tree is a data structure that stores interval, mainly realize a maximum querying time consuming of log(n).<br><a id="more"></a></p>
 <pre><code>           [0, 3, max=4]
           /             \
@@ -30,7 +30,7 @@
     
     <entry>
       <title><![CDATA[Load Balancing]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Load_Balancing/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Load_Balancing/</url>
       <content type="html"><![CDATA[<p>Process scheduling means which process should work on which processor.</p>
 <p>Load balancing is a strategy for how to do process scheduling. There are several policy that should be considered:</p>
 <ol>
@@ -52,7 +52,7 @@
     
     <entry>
       <title><![CDATA[File System]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/File_System/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/File_System/</url>
       <content type="html"><![CDATA[<h2 id="File-System-vs-database"><a href="#File-System-vs-database" class="headerlink" title="File System vs. database"></a><strong>File System vs. database</strong></h2><p>The true difference between file system and database is naming and encapsulation. Besides, files are more easy to make, more flexible to use.</p>
 <p>If the searchtousage ratio is low and the temporal locality is high, then file system is recommended. Otherwise database is recommended.</p>
 <p>P.S. The architecture is another difference.</p>
@@ -102,7 +102,7 @@
     
     <entry>
       <title><![CDATA[Naming]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Naming/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Naming/</url>
       <content type="html"><![CDATA[<p>Naming is a mechanism to make machine a human readable identifier. URN (Uniform resource name) has sets of rules to define that.<br><a id="more"></a></p>
 <h2 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a><strong>Navigation</strong></h2><p><strong>Conception:</strong> Searching for final resolution of a name by traversing realms.</p>
 <blockquote>
@@ -129,7 +129,7 @@
     
     <entry>
       <title><![CDATA[Paxos algorithm]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Paxos_Algorithm/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Paxos_Algorithm/</url>
       <content type="html"><![CDATA[<h2 id="Conceptions-and-Assumptions"><a href="#Conceptions-and-Assumptions" class="headerlink" title="Conceptions and Assumptions"></a><strong>Conceptions and Assumptions</strong></h2><p>Paxos algorithm is one of the most brilliant ideas (perhaps the most brilliant, according to <a href="http://research.google.com/pubs/author24014.html" target="_blank" rel="external">Michael Burrows</a>) talking about how fault-not-so-tolerant system reaches consistency on some value.</p>
 <p>Above all, there are some assumptions:</p>
 <ol>
@@ -165,7 +165,7 @@
     
     <entry>
       <title><![CDATA[Type of consistency]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Types_of_Consistency/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Types_of_Consistency/</url>
       <content type="html"><![CDATA[<p>Performance and consistency are always a pair of tradeoff.</p>
 <p>Today we discuss different kinds of consistency.<br><a id="more"></a></p>
 <h2 id="Strict-Consistency"><a href="#Strict-Consistency" class="headerlink" title="Strict Consistency"></a><strong>Strict Consistency</strong></h2><p>If process updates at T1, and then updates at T2, when read data between T1 and T2, following the strict consistency rule, the user would read data at T1.</p>
@@ -184,7 +184,7 @@
     
     <entry>
       <title><![CDATA[High Availability]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/High_Availability/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/High_Availability/</url>
       <content type="html"><![CDATA[<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a><strong>Concepts</strong></h2><p><strong>Availability</strong> means that machine/system runs continuously. Meanwhile the system would keep the maintenance outage under operator control, keep the costs low and keep the implementation overhead low.<br>If we define MTTF as Mean time to failure, and MTTR means Mean time to repair, availability is calculated as<br>Av = MTTF/(MTTR + MTTF)<br>The closer Av is to one, the stronger availability system is.<br><a id="more"></a></p>
 <p><strong>Difference between failure, fault and error</strong></p>
 <ul>
@@ -208,7 +208,7 @@
     
     <entry>
       <title><![CDATA[Peer to Peer System]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Peer_to_Peer_System/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Peer_to_Peer_System/</url>
       <content type="html"><![CDATA[<h2 id="History-P2P-System"><a href="#History-P2P-System" class="headerlink" title="History P2P System"></a><strong>History P2P System</strong></h2><p><strong>1st Generation: Napster</strong><br>Napster is the first generation of music online download company, the architecture of Napster is centralized. The most important part is the index server. The index server stores lists of peers. When a user wants to search for a file, it sends file location request to the index server, and obtain a list of peers with the file, towards which it will send request. Finally the target file is delivered back to the user.<br>Another and the final critical step is, users who gain a file now being responsible for storing and distributing the file (update index to the index server).</p>
 <p><strong>2nd Generation: Gnutella</strong><br>Gnutella designed as a P2P architecture in reaction to issues facing Napster. It is fully decentralized and fairly anonymous. In order to join the network, user must find at least one peer in the network. Communicating with those peers can the new user has knowledge of many peers.<br>In order to prevent from message flooding when querying, Gnutella came up with a limited-scope flooding protocol, that puts a <strong>“peer count” on depth of query</strong>.</p>
 <p><strong>3rd Generation: Supernodes</strong><br>The representative platforms are <strong>Skype</strong> and <strong>KaZaa</strong>. Supernodes evolve from ordinary nodes, and may be used for routing and searching. Limitations are: 1) searching and routing within the network are often unreliable, because network is very dynamic, even supernodes come and go as well. Also the bandwidth cost grows exponentially with the size of network (overwhelm slow nodes results in dropped queries and replies); 2) Protocols have evolved, limiting querying speed and tiered system of supernodes.</p>
@@ -247,7 +247,7 @@
     
     <entry>
       <title><![CDATA[Group Communication & Consensus]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Group_Communication_&_consensus/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Group_Communication_&_consensus/</url>
       <content type="html"><![CDATA[<h2 id="Part-1-Group-Communication"><a href="#Part-1-Group-Communication" class="headerlink" title="Part 1: Group Communication"></a>Part 1: Group Communication</h2><ul>
 <li><strong>Multicast routing: two approaches</strong><ul>
 <li>Flooding: Messages sent to neighbors, percolating from sender throughout the network. In this approach we only need local knowledge at each other.<ul>
@@ -292,7 +292,7 @@
     
     <entry>
       <title><![CDATA[Global State]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Global_State/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Global_State/</url>
       <content type="html"><![CDATA[<h2 id="Deadlock"><a href="#Deadlock" class="headerlink" title="Deadlock"></a><strong>Deadlock</strong></h2><p>Deadlock occurs if the wait-for graph has a loop in it. If an observer wants to see the loop, he must have a consistent, global view of the entire system. Phantom deadlocks occurs when the latency in the system causes us to miss critical events.</p>
 <hr>
 <h2 id="Cut"><a href="#Cut" class="headerlink" title="Cut"></a><strong>Cut</strong></h2><p>A cut slices through all event histories, and splits each process history into “complete” and “future”.<br>The only thing that needs notice is that cut should be <strong>inconsistent</strong>. </p>
@@ -315,7 +315,7 @@
     
     <entry>
       <title><![CDATA[Replication Communication]]></title>
-      <url>http://DavidCorn.github.io/2016/05/16/Replication_Communication/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/16/Replication_Communication/</url>
       <content type="html"><![CDATA[<h2 id="State-Machine-Approach"><a href="#State-Machine-Approach" class="headerlink" title="State Machine Approach"></a><strong>State Machine Approach</strong></h2><p>State machine consists of state variables and commands. State variable means an encoding of state, command means functions that can be performed.</p>
 <p>Anything that can be structured as procedures and procedure calls can be structured as state machines and requests.<br><a id="more"></a></p>
 <blockquote>
@@ -358,7 +358,7 @@
     
     <entry>
       <title><![CDATA[Clock_mutual_exclusion_and_elections]]></title>
-      <url>http://DavidCorn.github.io/2016/05/05/Clock-mutual-exclusion-and-elections/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/05/Clock-mutual-exclusion-and-elections/</url>
       <content type="html"><![CDATA[<h2 id="Part-1-Time-and-Clock"><a href="#Part-1-Time-and-Clock" class="headerlink" title="Part 1 Time and Clock"></a><strong>Part 1 Time and Clock</strong></h2><p>Lamport’s Logical Clock concerns the <strong>events order</strong> in system, it could let us know the order of events within 1) same thread; 2) different processes in same host; 3) different computers.</p>
 <p>The core concepts of logical clock is described as “<strong>happened before</strong>“ (causally), and the relationship is transitive. For example, if <code>&quot;a-&gt;b&quot;</code>, and <code>&quot;b-&gt;c&quot;</code>, then <code>&quot;a-&gt;c&quot;</code> must be true.</p>
 <p>If we define the timestamp of a specific event a as <code>Ci(a)</code>, i means the index of process <code>Pi</code>, if <code>&quot;a-&gt;b&quot;</code>, then <code>&quot;Ci(a) &lt; Ci(b)&quot;</code>.</p>
@@ -424,7 +424,7 @@
     
     <entry>
       <title><![CDATA[Communication_and_Distributed_Objects]]></title>
-      <url>http://DavidCorn.github.io/2016/05/05/Communication-and-Distributed-Objects/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/05/Communication-and-Distributed-Objects/</url>
       <content type="html"><![CDATA[<h2 id="Features-of-various-communication-paradigms"><a href="#Features-of-various-communication-paradigms" class="headerlink" title="Features of various communication paradigms"></a>Features of various communication paradigms</h2><p><strong>Message Passing</strong></p>
 <ul>
 <li><p>Basic interprocess communication among distributed system. You need to konw 1) the message; 2) the name of source; 3) the destination process; 4) data type expected for process.</p>
@@ -534,7 +534,7 @@
     
     <entry>
       <title><![CDATA[Concepts of DS]]></title>
-      <url>http://DavidCorn.github.io/2016/05/05/Concepts-of-DS/</url>
+      <url>http://liuxueshiwusuo.github.io/2016/05/05/Concepts-of-DS/</url>
       <content type="html"><![CDATA[<h2 id="DS-Concepts"><a href="#DS-Concepts" class="headerlink" title="DS Concepts"></a>DS Concepts</h2><ul>
 <li>A distributed system is one where several computations coordinate across machine boundaries<ul>
 <li>To coordinate, they must communicate, and must know of each other’s existence</li>
